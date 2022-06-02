@@ -26,7 +26,7 @@ public class LoginService implements Command {
 			System.out.println("로그인 성공!");
 		}
 		// return값 변경하기
-		return "templete.html";
+		return "main.html";
 	}
 
 }
