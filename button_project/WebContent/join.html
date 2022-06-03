@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="assets/images/icons/favicon.ico"/>
+	<link rel="icon" type="assets/image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -32,45 +32,70 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-			
-				<form class="login100-form validate-form" action="JoinService.do" method="post">
+				<form class="login100-form validate-form" method="post" action="LoginService.do">
 					<span class="login100-form-title p-b-26">
-						JOIN IN
+						회원가입
 					</span>
-					<span class="login100-form-title p-b-48">
-						<!--a 마크
-						<i class="zmdi zmdi-font"></i>-->
-					</span>
-					<!-- 이메일, 비밀번호, 비밀번호 확인, 이름, 생년월일, 성별, 휴대전화, 관리자체크하면 자격내용증명  -->
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="Email"></span>
+					
+
+					<div class="wrap-input100 validate-input" data-validate = "Enter id">
+						<input class="input100" type="text" name="id">
+						<span class="focus-input100" data-placeholder="아이디"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
+						<input class="input100" type="password" name="pw">
+						<span class="focus-input100" data-placeholder="비밀번호"></span>
+						</div>
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="pwcheck">
+						<span class="focus-input100" data-placeholder="비밀번호재입력"></span>
+						</div>
+					<div class="wrap-input100 validate-input" data-validate="Enter name">
+						<input class="input100" type="text" name="fname">
+						<span class="focus-input100" data-placeholder="이름"></span>
+						</div>
+						
+						<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+                  <input class="input100" type="text" name="email">
+                  <span class="focus-input100" data-placeholder="Email"></span>
+               </div>
+					
+					<div class="wrap-input100 validate-input" data-validate="Address">
+						<input class="input100" type="text" name="add">
+						<span class="focus-input100" data-placeholder="주소"></span>
+						</div>
+						
+					<div class="wrap-input100 validate-input" data-validate="Phonenum">
+						<input class="input100" type="text" name="Phone">
+						<span class="focus-input100" data-placeholder="전화번호"></span>
+						</div>
+						
+						관리자<input type="radio" name="a">
+						보호자<input type="radio" name="a">
+						
+						
+					
+					
+					
+						<span class="btn-show-pass"></span>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Login
+							<button class="login100-form-btn" >
+								회원가입
 							</button>
 						</div>
 					</div>
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							아직 회원이 아니신가요?</br>
+							Don’t have an account?
 						</span>
-						
-						<a class="txt2" href="join.html">
-							회원가입 하러 가기
+
+						<a class="txt2" href="#">
+							Sign Up
 						</a>
 					</div>
 				</form>
