@@ -8,7 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- Mapper.xml파일 안에 parameterType, resultType 지정하게 될 때, alias를 줘서 보다 간단하게 
 		코드를 작성할 수 있게 도와주는 방법 -->
 	<typeAliases>
-		<typeAlias type="kr.smhrd.model.MemberVO" alias="MemberVO" />
+		<typeAlias type="kr.smhrd.domain.MemberVO" alias="MemberVO" />
+		<typeAlias type="kr.smhrd.domain.SeniorVO" alias="SeniorVO" />
 	</typeAliases>
 
 	<!-- Mybatis 프레임워크의 틀 -->
@@ -30,6 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- Mapper 파일(SQL 쿼리문을 가지고 있는 파일) 설정하기 -->
 	<mappers>
 		<mapper resource="kr/smhrd/database/MemberMapper.xml" />
+		<mapper resource="kr/smhrd/database/SeniorMapper.xml" />
 	</mappers>
 
 </configuration>                   

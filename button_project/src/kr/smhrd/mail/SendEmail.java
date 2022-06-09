@@ -16,6 +16,8 @@ import javax.mail.internet.MimeMessage;
 public class SendEmail {
 	public void send() {
 
+		
+		
 		Properties p = System.getProperties();
 		p.put("mail.smtp.starttls.enable", "true"); // gmail은 true 고정
 		p.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
@@ -41,7 +43,7 @@ public class SendEmail {
 			InternetAddress to = new InternetAddress("isnowa97@naver.com");
 			msg.setRecipient(Message.RecipientType.TO, to);
 			// 이메일 제목
-			msg.setSubject("메일 전송 테스트", "UTF-8");
+			msg.setSubject("님이 벨을 누르셨습니다/", "UTF-8");
 			// 이메일 내용
 			msg.setText("메일 전송 됐는지 테스트", "UTF-8");
 			// 이메일 헤더

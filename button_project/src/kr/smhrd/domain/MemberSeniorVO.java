@@ -7,12 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SeniorVO {
+public class MemberSeniorVO {
+	private int member_senior_pk;
+	private String member_id;
 	private int senior_num;
-	private String senior_name;
-	private String senior_address;
-	private String disease;
-	private String gender;
-	private int weight;
-	private int age;
+	private String member_senior_info;
 }

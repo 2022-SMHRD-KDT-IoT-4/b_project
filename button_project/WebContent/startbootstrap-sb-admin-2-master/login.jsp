@@ -1,8 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,33 +41,31 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">로그인</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="LoginService.do">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="이메일">
+                                            <input type="text" class="form-control form-control-user"
+                                                name="member_id" aria-describedby="emailHelp"
+                                                placeholder="아이디">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="비밀번호">
+                                                name="member_pw" placeholder="비밀번호">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">이메일 기억하기</label>
+                                                <label class="custom-control-label" for="customCheck">아이디 기억하기</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            로그인
-                                        </a>
+                                        <input type = "submit" class="btn btn-primary btn-user btn-block" value = "로그인">
                                         <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">회원가입</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">비밀번호 분실</a>
-                                    </div>
-                                </form>
+                                    	<div class="text-center">
+                                        	<a class="small" href="join.jsp">회원가입</a>
+                                    	</div>
+                                    	<div class="text-center">
+                                        	<a class="small" href="forgot-password.html">비밀번호 분실</a>
+                                    	</div>
+                                	</form>
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 			HttpSession session = request.getSession();
 			session.invalidate();
 			// return값 변경하기
-			return "templete.html";
+			return "index.jsp";
 		}
 
 }

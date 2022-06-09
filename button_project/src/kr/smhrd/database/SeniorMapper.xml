@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : mapper 식별자 (고유의 이름) -->
+<!-- 절대 중복되면XX 중복되는 순간 mapper를 찾지 못한다. -->
+<mapper namespace="kr.smhrd.model.SeniorDAO">
+
+	<!-- 파라미터타입은 받아올 값이 있을 때 지정해주자 -->
+	<!-- 노인 정보 기입 -->
+	<insert id="seniorinsert" parameterType = "SeniorVO">
+		insert into senior values(senior_seq.nextval, #{senior_name}, #{senior_address}, #{disease}, #{gender}, #{weight}, #{age})
+	</insert>
+	
+	<!--  노인 정보 삭제 -->
+	<delete id="seniordelete" parameterType="int">
+		delete from senior where senior_num = #{senior_num}
+	</delete>
+	
+	<!-- 노인 정보 수정 -->
+	<update id="seniorupdate" parameterType="SeniorVO">
+		update senior set senior_name = #{senior_name}, senior_address = #{senior_address}, disease = #{disease}, gender = #{gender}, weight = #{weight}, age = #{age} where senior_num = #{senior_num}
+	</update>
+	
+	<!-- 노인 전체 정보 조회(추후 수정, 기능 확인용 기능) -->
+	<select id="seniorlist" resultType="SeniorVO">
+		select * from senior
+	</select>
+
+	
+</mapper>

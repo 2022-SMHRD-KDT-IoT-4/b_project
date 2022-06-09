@@ -12,12 +12,12 @@ public class UpdateService implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String phone = request.getParameter("phone");
-		String m_address = request.getParameter("m_address");
+		String member_id = request.getParameter("member_id");
+		String member_pw = request.getParameter("member_pw");
+		String member_phone = request.getParameter("member_phone");
+		String member_address = request.getParameter("member_address");
 
-		MemberVO vo = new MemberVO(id, pw, null, phone, null, m_address, null, null);
+		MemberVO vo = new MemberVO(member_id, member_pw, null, member_phone, null, member_address, null, null);
 
 		MemberDAO dao = new MemberDAO();
 		int row = dao.update(vo);
@@ -28,7 +28,7 @@ public class UpdateService implements Command {
 			session.setAttribute("member", vo);
 		}
 		// return값 변경하기
-		return "templete.html";
+		return "index.jsp";
 	}
 
 }

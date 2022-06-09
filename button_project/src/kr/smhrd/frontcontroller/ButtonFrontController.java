@@ -10,9 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.smhrd.controller.Command;
+import kr.smhrd.controller.DeleteSeniorService;
+import kr.smhrd.controller.DeleteService;
+import kr.smhrd.controller.InputSeniorService;
 import kr.smhrd.controller.JoinService;
 import kr.smhrd.controller.LoginService;
 import kr.smhrd.controller.LogoutService;
+import kr.smhrd.controller.SelectAllSeniorService;
+import kr.smhrd.controller.UpdateSeniorService;
+import kr.smhrd.controller.UpdateService;
 
 @WebServlet("*.do")
 public class ButtonFrontController extends HttpServlet {
@@ -31,8 +37,12 @@ public class ButtonFrontController extends HttpServlet {
 		String project = request.getContextPath();
 		System.out.println(project);
 
+		// 폴더 이름
+		// 동적으로 가져와야함! - 추후에 수정
+		String folder = "startbootstrap-sb-admin-2-master/";
+		
 		// 요청 들어온 servlet 이름만 확인
-		String reqURL = uri.substring(project.length() + 1);
+		String reqURL = uri.substring(project.length()+folder.length() + 1);
 		System.out.println(reqURL);
 		request.setCharacterEncoding("UTF-8");
 		
@@ -48,6 +58,24 @@ public class ButtonFrontController extends HttpServlet {
 		}else if (reqURL.equals("LogoutService.do")) {
 			// 3. 로그아웃 기능
 			sc = new LogoutService();
+		}else if (reqURL.equals("DeleteService.do")) {
+			// 4. 회원 삭제 기능
+			sc = new DeleteService();
+		}else if (reqURL.equals("UpdateService.do")) {
+			// 5. 회원 정보 수정
+			sc = new UpdateService();
+		}else if (reqURL.equals("InputSeniorService.do")) {
+			/// 6. 노인 정보 기입 기능
+			sc = new InputSeniorService();
+		}else if (reqURL.equals("DeleteSeniorService.do")) {
+			// 7. 노인 정보 삭제 기능
+			sc = new DeleteSeniorService();
+		}else if (reqURL.equals("UpdateSeniorService.do")) {
+			// 8. 노인 정보 수정 기능
+			sc = new UpdateSeniorService();
+		}else if(reqURL.equals("SelectAllSeniorService.do")) {
+			// 9. 노인 정보 전체 조회 기능
+			sc = new SelectAllSeniorService();
 		}
 		
 		moveURL = sc.execute(request, response);

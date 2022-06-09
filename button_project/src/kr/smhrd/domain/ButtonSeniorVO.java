@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MSeniorVO {
-	private int ms_num;
-	private String id;
-	private int s_num;
-	private String memo;
+public class ButtonSeniorVO {
+	private int button_id;
+	private int senior_num;
+	private String button_senior_info;
 }

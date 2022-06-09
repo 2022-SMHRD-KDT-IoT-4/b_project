@@ -12,10 +12,10 @@ public class LoginService implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String member_id = request.getParameter("member_id");
+		String member_pw = request.getParameter("member_pw");
 		
-		MemberVO vo = new MemberVO(id, pw, null, null, null, null, null, null);
+		MemberVO vo = new MemberVO(member_id, member_pw, null, null, null, null, null, null);
 		
 		MemberDAO dao = new MemberDAO();
 		MemberVO result = dao.login(vo);
@@ -26,7 +26,7 @@ public class LoginService implements Command {
 			System.out.println("로그인 성공!");
 		}
 		// return값 변경하기
-		return "main.html";
+		return "index.jsp";
 	}
 
 }

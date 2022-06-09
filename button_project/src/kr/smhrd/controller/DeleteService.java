@@ -10,17 +10,17 @@ public class DeleteService implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		System.out.println(id);
+		String member_id = request.getParameter("member_id");
+		System.out.println(member_id);
 
 		MemberDAO dao = new MemberDAO();
-		int row = dao.delete(id);
+		int row = dao.delete(member_id);
 
 		if (row > 0) {
 			System.out.println("회원 삭제 성공!!");
 		}		
 		// return값 변경하기
-		return "templete.html";
+		return "index.jsp";
 	}
 
 }

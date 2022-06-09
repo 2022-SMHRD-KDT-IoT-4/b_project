@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 public class MemberVO {
 
 	// member 테이블 
-	private String id;
-	private String pw;
-	private String mail;
-	private String phone;
-	private String m_name;
-	private String m_address;
-	private String m_check;
-	private String i_num;
+	private String member_id;
+	private String member_pw;
+	private String member_mail;
+	private String member_phone;
+	private String member_name;
+	private String member_address;
+	private String member_check;
+	private String member_license;
 	
 }

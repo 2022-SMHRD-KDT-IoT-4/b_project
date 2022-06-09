@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmergencyVO {
-	private int e_num;
-	private int s_num;
-	private String e_date;
-	private String e_comm;
-	private String ea_date;
+	private int emergency_pk;
+	private String emergency_check;
+	private String emergency_type;
+	private String emergency_date;
+	private String emergency_action;
+	private String emergency_action_date;
 }
