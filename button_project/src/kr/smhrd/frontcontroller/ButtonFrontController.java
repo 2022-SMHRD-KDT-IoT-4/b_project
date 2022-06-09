@@ -37,12 +37,8 @@ public class ButtonFrontController extends HttpServlet {
 		String project = request.getContextPath();
 		System.out.println(project);
 
-		// 폴더 이름
-		// 동적으로 가져와야함! - 추후에 수정
-		String folder = "startbootstrap-sb-admin-2-master/";
-		
 		// 요청 들어온 servlet 이름만 확인
-		String reqURL = uri.substring(project.length()+folder.length() + 1);
+		String reqURL = uri.substring(project.length()+1);
 		System.out.println(reqURL);
 		request.setCharacterEncoding("UTF-8");
 		
