@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
     <div class="container">
 
@@ -63,7 +63,7 @@
                                         	<a class="small" href="join.jsp">회원가입</a>
                                     	</div>
                                     	<div class="text-center">
-                                        	<a class="small" href="forgot-password.html">비밀번호 분실</a>
+                                        	<a class="small" href="forgot-password.jsp">비밀번호 분실</a>
                                     	</div>
                                 	</form>
                                 </div>

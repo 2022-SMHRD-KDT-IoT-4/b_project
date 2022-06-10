@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +24,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
     <div class="container">
 
@@ -54,10 +56,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">회원가입</a>
+                                        <a class="small" href="join.jsp">회원가입</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="login.html">로그인</a>
+                                        <a class="small" href="login.jsp">로그인</a>
                                     </div>
                                 </div>
                             </div>
