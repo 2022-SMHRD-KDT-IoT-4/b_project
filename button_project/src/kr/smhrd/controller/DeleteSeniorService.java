@@ -18,7 +18,7 @@ public class DeleteSeniorService implements Command {
 			System.out.println("노인 정보 삭제 성공");
 		}
 
-		return "index.jsp";
+		return "infoSenior.jsp";
 	}
 
 }
