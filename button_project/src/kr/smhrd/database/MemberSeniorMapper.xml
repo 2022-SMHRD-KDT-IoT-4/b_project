@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : mapper 식별자 (고유의 이름) -->
+<!-- 절대 중복되면XX 중복되는 순간 mapper를 찾지 못한다. -->
+<mapper namespace="kr.smhrd.model.MemberSeniorDAO">
+
+	<!-- 노인 전체 정보 조회(추후 수정, 기능 확인용 기능) -->
+	<select id="memberseniorlist" resultType="MemberSeniorVO">
+		select * from member_senior
+	</select>
+
+	
+</mapper>

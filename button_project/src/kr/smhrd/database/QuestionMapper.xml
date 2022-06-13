@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : mapper 식별자 (고유의 이름) -->
+<!-- 절대 중복되면XX 중복되는 순간 mapper를 찾지 못한다. -->
+<mapper namespace="kr.smhrd.model.QuestionDAO">
+
+	<!-- 파라미터타입은 받아올 값이 있을 때 지정해주자 -->
+	<!-- 정보 불러오기 -->
+	<select id="questionlist" parameterType="int" resultType="QuestionVO">
+		select 
+	</select>
+</mapper>

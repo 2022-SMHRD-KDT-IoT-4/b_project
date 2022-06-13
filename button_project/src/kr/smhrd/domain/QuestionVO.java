@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionVO {
-	private int q_num;
-	private String q_cont;
-	private String q_check;
+	private int question_id;
+	private int question_num;
+	private String question_time;
+	private int button_id;
+	private String question_data;
 }

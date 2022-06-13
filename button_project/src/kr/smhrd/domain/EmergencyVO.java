@@ -14,4 +14,5 @@ public class EmergencyVO {
 	private String emergency_date;
 	private String emergency_action;
 	private String emergency_action_date;
+	private int button_id;
 }

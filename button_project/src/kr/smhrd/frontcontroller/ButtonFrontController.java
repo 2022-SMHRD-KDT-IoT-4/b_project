@@ -16,7 +16,6 @@ import kr.smhrd.controller.InputSeniorService;
 import kr.smhrd.controller.JoinService;
 import kr.smhrd.controller.LoginService;
 import kr.smhrd.controller.LogoutService;
-import kr.smhrd.controller.SelectAllSeniorService;
 import kr.smhrd.controller.UpdateSeniorService;
 import kr.smhrd.controller.UpdateService;
 
@@ -37,6 +36,12 @@ public class ButtonFrontController extends HttpServlet {
 		String project = request.getContextPath();
 		System.out.println(project);
 
+//		// 폴더 이름
+//		// 동적으로 가져와야함! - 추후에 수정
+//		String folder = "startbootstrap-sb-admin-2-master/";
+//		System.out.println(folder);
+////		String folder = request.
+		
 		// 요청 들어온 servlet 이름만 확인
 		String reqURL = uri.substring(project.length()+1);
 		System.out.println(reqURL);
@@ -69,9 +74,6 @@ public class ButtonFrontController extends HttpServlet {
 		}else if (reqURL.equals("UpdateSeniorService.do")) {
 			// 8. 노인 정보 수정 기능
 			sc = new UpdateSeniorService();
-		}else if(reqURL.equals("SelectAllSeniorService.do")) {
-			// 9. 노인 정보 전체 조회 기능
-			sc = new SelectAllSeniorService();
 		}
 		
 		moveURL = sc.execute(request, response);

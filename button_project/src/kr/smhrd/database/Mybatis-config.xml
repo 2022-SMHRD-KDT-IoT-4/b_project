@@ -10,6 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<typeAliases>
 		<typeAlias type="kr.smhrd.domain.MemberVO" alias="MemberVO" />
 		<typeAlias type="kr.smhrd.domain.SeniorVO" alias="SeniorVO" />
+		<typeAlias type="kr.smhrd.domain.MemberSeniorVO" alias="MemberSeniorVO" />
+		<typeAlias type="kr.smhrd.domain.QuestionVO" alias="QuestionVO" />
 	</typeAliases>
 
 	<!-- Mybatis 프레임워크의 틀 -->
@@ -32,6 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<mappers>
 		<mapper resource="kr/smhrd/database/MemberMapper.xml" />
 		<mapper resource="kr/smhrd/database/SeniorMapper.xml" />
+		<mapper resource="kr/smhrd/database/MemberSeniorMapper.xml" />
+		<mapper resource="kr/smhrd/database/QuestionMapper.xml" />
 	</mappers>
 
 </configuration>                   

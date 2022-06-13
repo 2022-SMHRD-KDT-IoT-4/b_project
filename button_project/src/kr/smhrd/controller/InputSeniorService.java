@@ -31,7 +31,7 @@ public class InputSeniorService implements Command {
 	}
 	
 	// return값 변경하기
-	moveURL = "seniorInfoList.jsp";
+	moveURL = "infoSenior.jsp";
 	return moveURL;
 	
 	}
