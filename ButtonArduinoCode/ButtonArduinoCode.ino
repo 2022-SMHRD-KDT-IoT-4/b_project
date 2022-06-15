@@ -164,9 +164,9 @@ void askq() {
           joke();
         } else {}
       } else {
-        mp3player(11);
+        mp3player(11); // 띵동
         sendData(6, "1");
-        mp3player(25);
+        mp3player(25); // 응답해주셔서 감사합니다
       }
       break;
       
@@ -186,7 +186,7 @@ void emerg() {
   buttonState = LOW;
   
   mp3.stop_mp3();
-  mp3player(2);
+  mp3player(2); // 응답 신호를 전송하시려면 다시 한 번 눌러주세요.
   delay(2000);
         
   while(w < 10) {
@@ -195,12 +195,12 @@ void emerg() {
     
     if(buttonState == HIGH) {
       
-      mp3player(11);
+      mp3player(11); // 띵동
       delay(1000);
-      mp3player(3);
+      mp3player(3); // 응답 신호 전송중
       sendData(1, "1");
       delay(2000);
-      mp3player(1);
+      mp3player(1); // 응답 신호가 전송되었습니다
       break;
       
     } else {}
@@ -219,7 +219,7 @@ void joke() {
   buttonState = LOW;
   
   mp3.stop_mp3();
-  mp3player(27);
+  mp3player(27); // 정답이 궁금하시면 버튼을 눌러주세요.
   delay(2000);
         
   while(w < 10) {
@@ -228,11 +228,11 @@ void joke() {
     
     if(buttonState == HIGH) {
 
-      mp3player(28);
+      mp3player(28); // 정답은
       delay(2000);
       mp3player(jokeNum+10);
       delay(2000);
-      mp3player(26);
+      mp3player(26); // 하하하
       askFlag = HIGH;
       Serial.println("질문 체크 깃발 올림");
       break;
