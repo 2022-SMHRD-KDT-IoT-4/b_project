@@ -445,47 +445,48 @@
                             </div>
                         </div>
 
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">설문 응답률(월) - 55%</h5>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 응답
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-warning"></i> 보류
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-danger"></i> 거부(기한초과)
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+   <!-- Pie Chart -->
+						<!-- 설문 응답률(월) -->
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h5 class="m-0 font-weight-bold text-primary" id="percentage">설문 응답률(월) - </h5>
+									<!-- 월별 응답률 데이터 넣기 -->
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"> <i
+											class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div
+											class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+											aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<a class="dropdown-item" href="#">Action</a> <a
+												class="dropdown-item" href="#">Another action</a>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div>
+									</div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body">
+									<div class="chart-pie pt-4 pb-2">
+										<canvas id="myPieChart"></canvas>
+									</div>
+									<div class="mt-4 text-center small">
+										<span class="mr-2"> <i
+											class="fas fa-circle text-success"></i> 응답
+										</span> <span class="mr-2"> <i
+											class="fas fa-circle text-warning"></i> 무응답(시간초과)
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						
                     </div>
 
                     <!-- Content Row -->
@@ -499,35 +500,53 @@
                                 <div class="card-header py-3">
                                     <h5 class="m-0 font-weight-bold text-primary">생활 환경 정보(일)</h5>
                                 </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">온도<span class="float-right">평균 20도</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">일교차<span class="float-right">18도(최고-최저)</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 18%"
-                                            aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">습도<span class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">공기 오염도<span class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">종합 생활 환경 점수 - 쾌적<span
-                                            class="float-right">88점</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 88%"
-                                            aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
+                                
+                                
+								<!--  생활 환경 정보 프로그레스바  -->
+								<div class="card-body">
+									<h4 class="small font-weight-bold">
+										온도<span class="float-right" id="tempAvg"></span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: 0%" aria-valuemin="0"
+											aria-valuemax="50"></div>
+									</div>
+									<h4 class="small font-weight-bold">
+										일교차<span class="float-right" id="tempGap"></span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-warning" role="progressbar"
+											style="width: 0%" aria-valuenow="18" aria-valuemin="0"
+											aria-valuemax="28"></div> <!-- aria-valuemax:한국 연교차 -->
+									</div>
+									<h4 class="small font-weight-bold">
+										습도<span class="float-right" id="humidityText"></span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar" role="progressbar" id="humidity"
+											style="width: 0%" aria-valuenow="40" aria-valuemin="0"
+											aria-valuemax="80"></div> <!-- aria-valuemax:최고상대습도 -->
+									</div>
+									<h4 class="small font-weight-bold">
+										공기 오염도<span class="float-right" id="air"></span>
+									</h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-info" role="progressbar"
+											style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+									<h4 class="small font-weight-bold">
+										종합 생활 환경 점수 - 쾌적<span class="float-right">88점</span>
+									</h4>
+									<div class="progress">
+										<div class="progress-bar bg-success" role="progressbar"
+											style="width: 88%" aria-valuenow="88" aria-valuemin="0"
+											aria-valuemax="100"></div>
+									</div>
+								</div>
+                                
+                                
                             </div>
 
                             <!-- Color System -->
@@ -725,6 +744,7 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+	<script type="text/javascript" src="js/demo/progress-bar-demo.js"></script> <!-- 생활환경정보 프로그레스바 js 파일로 연결 -->
 
 </body>
 

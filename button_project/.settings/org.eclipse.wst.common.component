@@ -7,9 +7,8 @@
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
                 
-        <property name="context-root" value="button_project"/>
-                
         <property name="java-output-path" value="/button_project/build/classes"/>
+        <property name="context-root" value="button_project"/>
             
     </wb-module>
     

@@ -28,4 +28,9 @@
 	<delete id="memberdelete" parameterType="String">
 		delete from member where member_id = #{member_id}
 	</delete>
+	
+	<!-- 회원 이메일 찾기 -->
+	<select id="membermailselect" parameterType="String" resultType="String">
+		select member_mail from member where member_id = #{member_id}
+	</select>
 </mapper>

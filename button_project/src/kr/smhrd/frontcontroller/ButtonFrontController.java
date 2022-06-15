@@ -75,6 +75,8 @@ public class ButtonFrontController extends HttpServlet {
 			// 8. 노인 정보 수정 기능
 			sc = new UpdateSeniorService();
 		}
+		// 9. 질문 정보 보내기는 frontcontroller 안거친다. QuestionInfoService.do
+		// 10. 응급 상황시 이메일 전송 기능도 frontcontroller 안거칩니다. EmergencyMailService.do
 		
 		moveURL = sc.execute(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher(moveURL);

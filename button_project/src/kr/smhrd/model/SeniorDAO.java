@@ -13,7 +13,7 @@ public class SeniorDAO {
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	private SqlSession sqlSession = null;
 	
-	// 노인 정보 기입
+	// 1. 노인 정보 기입
 	public int inputSenior(SeniorVO vo) {
 		int row = 0;
 		try {
@@ -27,7 +27,7 @@ public class SeniorDAO {
 		return row;
 	}// 노인 정보 기입 기능 끝
 	
-	// 노인 정보 삭제 기능
+	// 2. 노인 정보 삭제 기능
 	public int deleteSenior(int senior_num) {
 		int row = 0;
 		try {
@@ -41,7 +41,7 @@ public class SeniorDAO {
 		return row;
 	}// 노인 정보 삭제 기능 끝
 	
-	// 노인 정보 수정 기능
+	// 3. 노인 정보 수정 기능
 	public int updateSenior(SeniorVO vo) {
 		int row = 0;
 		try {
@@ -55,7 +55,7 @@ public class SeniorDAO {
 		return row;
 	}// 노인 정보 수정 기능 끝
 	
-	// 노인 정보 전체 조회 기능(기능확인용)
+	// 4. 노인 정보 전체 조회 기능(기능확인용)
 	public ArrayList<SeniorVO> seniorAllList(){
 		ArrayList<SeniorVO> list = new ArrayList<SeniorVO>();
 		try {
@@ -67,7 +67,20 @@ public class SeniorDAO {
 			sqlSession.close();
 		}
 		return list;
-		
+	}
+	
+	// 5. 응급 호출 메일에 필요 : 노인이름 가져오기
+	public String selectSeniorName(int senior_num) {
+		String senior_name = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession(true);
+			senior_name = sqlSession.selectOne("kr.smhrd.model.SeniorDAO.seniornameselect", senior_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return senior_name;
 	}
 
 }

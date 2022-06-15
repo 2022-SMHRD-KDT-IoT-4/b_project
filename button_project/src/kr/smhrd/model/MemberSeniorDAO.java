@@ -13,7 +13,7 @@ public class MemberSeniorDAO {
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	private SqlSession sqlSession = null;
 	
-	// 회원 별 관리노인 조회
+	// 1. 회원 별 관리노인 조회
 	public ArrayList<MemberSeniorVO> memberSeniorList(){
 		ArrayList<MemberSeniorVO> list = new ArrayList<MemberSeniorVO>();
 		try {
@@ -26,4 +26,19 @@ public class MemberSeniorDAO {
 		}
 		return list;
 	}
+	
+	// 2. 응급 호출에 필요 : 멤버 아이디 구하기
+		public String selectMemberId(int senior_num) {
+			String member_id = null;
+			try {
+				sqlSession = sqlSessionFactory.openSession(true);
+				member_id = sqlSession.selectOne("kr.smhrd.model.MemberSeniorDAO.memberidselect", senior_num);
+				System.out.println(member_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sqlSession.close();
+			}
+			return member_id;
+		}
 }

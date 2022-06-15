@@ -1,6 +1,7 @@
 package kr.smhrd.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,16 +16,14 @@ public class QuestionDAO {
 	private SqlSession sqlSession = null;
 	
 	// 버튼 아이디 이용해 질문 번호, 질문 시간, 질문 내용 가져오기
-	public ArrayList<QuestionVO> selectQuestion(int button_Id) {
-		ArrayList<QuestionVO> list = new ArrayList<QuestionVO>();
-		try {
+	public List<QuestionVO> selectQuestion(int button_id) {
+		
+		List<QuestionVO> list= null;
 			sqlSession = sqlSessionFactory.openSession(true);
-			list = (ArrayList)sqlSession.selectList("kr.smhrd.model.QuestionDAO.questionlist");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+			list = sqlSession.selectList("kr.smhrd.model.QuestionDAO.questionlist", button_id);
 			sqlSession.close();
-		}
+
 		return list;
 	}
+	
 }

@@ -27,6 +27,11 @@
 	<select id="seniorlist" resultType="SeniorVO">
 		select * from senior
 	</select>
+	
+	<!-- 응급 호출 메일 : 노인번호로 노인이름 가져오기 -->
+	<select id="seniornameselect" parameterType="int" resultType="String">
+		select senior_name from senior where senior_num = #{senior_num}
+	</select>
 
 	
 </mapper>
