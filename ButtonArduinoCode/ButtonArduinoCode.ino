@@ -144,8 +144,10 @@ void askq() {
       ||getLocalTime('H')==18||getLocalTime('H')==22||getLocalTime('H')==23) {
         if(con==0) {
           mp3player(22); // mp3player(random(31,40));
+          askFlag = true;
         } else if(con==1) {
           mp3player(25); // mp3player(random(41,50));
+          askFlag = true;
         } else {}
       } else {
         mp3player(11);
@@ -477,10 +479,8 @@ void askSelect() {
     mp3player(21); // 안녕히 주무세요
   } else if(!askFlag&&con==0) {
     mp3player(23); // 노래 한곡 들으시겠습니까?
-    askFlag = false;
   } else if(!askFlag&&con==1) {
     mp3player(24); // 놀라운 사실 하나 알려드릴까요?
-    askFlag = false;
   } else {}
 
 }
