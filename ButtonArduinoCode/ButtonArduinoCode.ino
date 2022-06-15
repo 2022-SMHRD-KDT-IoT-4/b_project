@@ -142,8 +142,8 @@ void askq() {
         mp3player(22);
       } else {
         mp3player(11);
+        sendData(6, "1");
       }
-      sendData(6, "1");
       break;
       
     } else {}
