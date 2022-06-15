@@ -26,6 +26,7 @@ const int solosen = 39;
 boolean breath = LOW;
 boolean buttonState = LOW;
 boolean saveButtonState = LOW;
+int con = 0;
 
 float cycletime = 0;
 float distance = 0;
@@ -129,6 +130,7 @@ void askq() {
   breath = HIGH;
   
   mp3.stop_mp3();
+  con = random(0,1);
   askSelect();
   delay(2000);
         
@@ -138,9 +140,13 @@ void askq() {
     
     if(buttonState == HIGH) {
 
-      if((getLocalTime('H')>=0&&getLocalTime('H')<8)||getLocalTime('H')==10||getLocalTime('H')==12
-         ||getLocalTime('H')==17||getLocalTime('H')==18||getLocalTime('H')==22||getLocalTime('H')==23) {
-        mp3player(22);
+      if(getLocalTime('H')==10||getLocalTime('H')==12||getLocalTime('H')==17
+      ||getLocalTime('H')==18||getLocalTime('H')==22||getLocalTime('H')==23) {
+        if(con==0) {
+          mp3player(22); // mp3player(random(31,40));
+        } else if(con==1) {
+          mp3player(25); // mp3player(random(41,50));
+        } else {}
       } else {
         mp3player(11);
         sendData(6, "1");
@@ -360,17 +366,13 @@ void setFlag() {
 
   if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0&&getLocalTime('S')%10==0) {
     
-    if(flag2) flag2 = false; else {}
-    Serial.println("활동량 데이터 전송 체크 깃발 내림");
-    if(flag3) flag3 = false; else {}
-    Serial.println("온도 데이터 전송 체크 깃발 내림");
-    if(flag4) flag4 = false; else {}
-    Serial.println("습도 데이터 전송 체크 깃발 내림");
+    if(flag2) {flag2 = false; Serial.println("활동량 데이터 전송 체크 깃발 내림");} else {}
+    if(flag3) {flag3 = false; Serial.println("온도 데이터 전송 체크 깃발 내림");} else {}
+    if(flag4) {flag4 = false; Serial.println("습도 데이터 전송 체크 깃발 내림");} else {}
     
   } else if(getLocalTime('N')%60==59&&getLocalTime('S')%10==0) {
     
-    if(askFlag) askFlag = false; else {}
-    Serial.println("질문 체크 깃발 내림");
+    if(askFlag) {askFlag = false; Serial.println("질문 체크 깃발 내림");} else {}
     
   } else {}
   
@@ -473,8 +475,11 @@ void askSelect() {
     mp3player(20); // 저녁 약은 드셨나요?
   } else if(!askFlag&&getLocalTime('H')==21) {
     mp3player(21); // 안녕히 주무세요
-  } else if(!askFlag) {
-    mp3player(23);
+  } else if(!askFlag&&con==0) {
+    mp3player(23); // 노래 한곡 들으시겠습니까?
+    askFlag = false;
+  } else if(!askFlag&&con==1) {
+    mp3player(24); // 놀라운 사실 하나 알려드릴까요?
     askFlag = false;
   } else {}
 
