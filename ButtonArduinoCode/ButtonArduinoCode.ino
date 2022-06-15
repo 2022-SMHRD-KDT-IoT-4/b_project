@@ -93,7 +93,7 @@ void loop() {
   if((WiFi.status()==WL_CONNECTED)) {
 
     if(buttonState==HIGH&&saveButtonState==LOW) emerg(); else {}
-    if(millis()>30000&&distanceState<80&&breath==LOW) askq(); else {}
+    if(millis()>30000&&getAct()==100&&breath==LOW) askq(); else {}
     sendData(2, (String) actDat);
     sendData(3, (String) avgTempDat);
     sendData(4, (String) avgHumiDat);
@@ -483,7 +483,7 @@ void getDHT() {
 int getAct() {
 
   int act = (int) abs(saveDistanceState - distanceState);
-  if(act > 20) return 100; else {}
+  if(act > 30) return 100; else {}
   return 0;
   
 }
