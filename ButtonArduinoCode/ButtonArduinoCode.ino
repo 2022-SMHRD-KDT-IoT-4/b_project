@@ -40,7 +40,6 @@ int avgHumiDat = 40;
 int avgTempCount = 1;
 int avgHumiCount = 1;
 
-boolean first = true;
 boolean flag2 = false;
 boolean flag3 = false;
 boolean flag4 = false;
@@ -92,9 +91,7 @@ void loop() {
   if((WiFi.status()==WL_CONNECTED)) {
 
     if(buttonState==HIGH&&saveButtonState==LOW) emerg(); else {}
-    if(millis() > 30000) {
-      if(distanceState<80&&breath==LOW) askq(); else {}
-    } else {}
+    if(millis()>30000&&distanceState<80&&breath==LOW) askq(); else {}
     sendData(2, (String) actDat);
     sendData(3, (String) avgTempDat);
     sendData(4, (String) avgHumiDat);
@@ -103,7 +100,6 @@ void loop() {
 
   saveButtonState = buttonState;
   saveDistanceState = distanceState;
-  first = false;
   getReport();
 
 }
@@ -195,7 +191,7 @@ void emerg() {
 
 void setBreath() {
   
-  if(getLocalTime('N')%10==0) breath = LOW; else {}
+  if(getLocalTime('N')%10==0&&getLocalTime('S')%10==0) breath = LOW; else {}
   
 }
 
@@ -241,7 +237,7 @@ void sendData(int field, String dat) {
 
   if(field==1) {
     
-    http.begin(tomcatServer+"?button_id=2&emergency_check=1");
+    http.begin(tomcatServer+"?button_id="+buttonID+"&emergency_check=1");
     
     if(http.GET() > 0) {
       
@@ -361,7 +357,7 @@ void sendData(int field, String dat) {
 
 void setFlag() {
 
-  if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0&&getLocalTime('S')%60==30) {
+  if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0&&getLocalTime('S')%10==0) {
     
     if(flag2) flag2 = false; else {}
     Serial.println("활동량 데이터 전송 체크 깃발 내림");
@@ -370,7 +366,7 @@ void setFlag() {
     if(flag4) flag4 = false; else {}
     Serial.println("습도 데이터 전송 체크 깃발 내림");
     
-  } else if(getLocalTime('N')%60==59&&getLocalTime('S')%60==30) {
+  } else if(getLocalTime('N')%60==59&&getLocalTime('S')%10==0) {
     
     if(askFlag) askFlag = false; else {}
     Serial.println("질문 체크 깃발 내림");
@@ -439,6 +435,7 @@ int getAct() {
 
 void mp3player(int value) {
 
+  // 라이브러리 교체해야
   mp3.set_volume(VOLUME);
   mp3.play_mp3(1, value);
   delay(100);
