@@ -63,7 +63,7 @@ void setup() {
   delay(3000);
   mp3player(6); // 실행 준비 중입니다 잠시만 기다려 주세요.
   delay(3000);
-  mp3player(7); // 준비 대기 음악
+  mp3player(random(31,43)); // 준비 대기 음악
   
   WiFi.begin(ssid, password);
   Serial.printf("와이파이 연결 중 ...");
@@ -74,9 +74,15 @@ void setup() {
   Serial.print(" 와이파이 연결 성공\n");
   
   configTime(3600*timeZone, 3600*summerTime, ntpServer);
+  Serial.printf("시간 동기화 하는 중 ...");
+  while (!time(nullptr)) { 
+     Serial.print("."); 
+     delay(1000); 
+  }
   Serial.print("시간 동기화 성공\n");
 
   mp3.stop_mp3();
+  mp3player(11);
 
 }
 
@@ -249,7 +255,9 @@ void joke() {
 
 void setBreath() {
   
-  if(getLocalTime('N')%10==0&&getLocalTime('S')%10==0) breath = LOW; else {}
+  if(getLocalTime('N')%10==0&&getLocalTime('S')%10==0) {
+    breath = LOW;
+  } else {}
   
 }
 
@@ -418,13 +426,25 @@ void setFlag() {
 
   if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0&&getLocalTime('S')%10==0) {
     
-    if(flag2) {flag2 = LOW; Serial.println("활동량 데이터 전송 체크 깃발 내림");} else {}
-    if(flag3) {flag3 = LOW; Serial.println("온도 데이터 전송 체크 깃발 내림");} else {}
-    if(flag4) {flag4 = LOW; Serial.println("습도 데이터 전송 체크 깃발 내림");} else {}
+    if(flag2) {
+      flag2 = LOW;
+      Serial.println("활동량 데이터 전송 체크 깃발 내림");
+    } else {}
+    if(flag3) {
+      flag3 = LOW; 
+      Serial.println("온도 데이터 전송 체크 깃발 내림");
+    } else {}
+    if(flag4) {
+      flag4 = LOW; 
+      Serial.println("습도 데이터 전송 체크 깃발 내림");
+    } else {}
     
   } else if(getLocalTime('N')%60==59&&getLocalTime('S')%10==0) {
     
-    if(askFlag) {askFlag = LOW; Serial.println("질문 체크 깃발 내림");} else {}
+    if(askFlag) {
+      askFlag = LOW; 
+      Serial.println("질문 체크 깃발 내림");
+    } else {}
     
   } else {}
   
