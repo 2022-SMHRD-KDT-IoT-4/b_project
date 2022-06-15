@@ -63,7 +63,7 @@ void setup() {
   delay(3000);
   mp3player(6); // 실행 준비 중입니다 잠시만 기다려 주세요.
   delay(3000);
-  mp3player(random(31,43)); // 준비 대기 음악
+  mp3player(50); // 준비 대기 음악
   
   WiFi.begin(ssid, password);
   Serial.printf("와이파이 연결 중 ...");
@@ -75,14 +75,14 @@ void setup() {
   
   configTime(3600*timeZone, 3600*summerTime, ntpServer);
   Serial.printf("시간 동기화 하는 중 ...");
-  while (!time(nullptr)) {  
+  while (!time(nullptr)) { 
+     Serial.print("."); 
      delay(1000); 
-     Serial.print(".");
   }
   Serial.print("시간 동기화 성공\n");
 
   mp3.stop_mp3();
-  mp3player(11);
+  mp3player(30); // 준비 완료 신호
 
 }
 
