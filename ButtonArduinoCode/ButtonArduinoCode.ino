@@ -361,7 +361,7 @@ void sendData(int field, String dat) {
 
 void setFlag() {
 
-  if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0) {
+  if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0&&getLocalTime('S')%60==30) {
     
     if(flag2) flag2 = false; else {}
     Serial.println("활동량 데이터 전송 체크 깃발 내림");
@@ -370,7 +370,7 @@ void setFlag() {
     if(flag4) flag4 = false; else {}
     Serial.println("습도 데이터 전송 체크 깃발 내림");
     
-  } else if(getLocalTime('N')%60==59&&getLocalTime('S')%60==10) {
+  } else if(getLocalTime('N')%60==59&&getLocalTime('S')%60==30) {
     
     if(askFlag) askFlag = false; else {}
     Serial.println("질문 체크 깃발 내림");
