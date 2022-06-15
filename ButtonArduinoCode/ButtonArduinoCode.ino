@@ -91,7 +91,6 @@ void loop() {
   
   if((WiFi.status()==WL_CONNECTED)) {
 
-
     if(buttonState==HIGH&&saveButtonState==LOW) emerg(); else {}
     if(millis() > 30000) {
       if(distanceState<80&&breath==LOW) askq(); else {}
@@ -371,7 +370,7 @@ void setFlag() {
     if(flag4) flag4 = false; else {}
     Serial.println("습도 데이터 전송 체크 깃발 내림");
     
-  } else if(getLocalTime('N')%60==59) {
+  } else if(getLocalTime('N')%60==59&&getLocalTime('S')%60==10) {
     
     if(askFlag) askFlag = false; else {}
     Serial.println("질문 체크 깃발 내림");
