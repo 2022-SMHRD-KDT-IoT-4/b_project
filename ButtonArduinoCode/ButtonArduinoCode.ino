@@ -75,9 +75,9 @@ void setup() {
   
   configTime(3600*timeZone, 3600*summerTime, ntpServer);
   Serial.printf("시간 동기화 하는 중 ...");
-  while (!time(nullptr)) { 
-     Serial.print("."); 
+  while (!time(nullptr)) {  
      delay(1000); 
+     Serial.print(".");
   }
   Serial.print("시간 동기화 성공\n");
 
