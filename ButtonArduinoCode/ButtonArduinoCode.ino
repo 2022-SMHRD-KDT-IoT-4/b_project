@@ -27,6 +27,7 @@ boolean breath = LOW;
 boolean buttonState = LOW;
 boolean saveButtonState = LOW;
 int con = 0;
+int jokeNum = 0;
 
 float cycletime = 0;
 float distance = 0;
@@ -41,10 +42,10 @@ int avgHumiDat = 40;
 int avgTempCount = 1;
 int avgHumiCount = 1;
 
-boolean flag2 = false;
-boolean flag3 = false;
-boolean flag4 = false;
-boolean askFlag = false;
+boolean flag2 = LOW;
+boolean flag3 = LOW;
+boolean flag4 = LOW;
+boolean askFlag = LOW;
 
 void setup() {
   
@@ -56,13 +57,13 @@ void setup() {
   pinMode(LED, OUTPUT);
   pinMode(solosen, INPUT);
   mp3.set_volume(30);
-  mp3player(4);
+  mp3player(4); // 안녕하세요
   delay(1000);
-  mp3player(5);
+  mp3player(5); // 스마트 버튼 영웅이 입니다.
   delay(3000);
-  mp3player(6);
+  mp3player(6); // 실행 준비 중입니다 잠시만 기다려 주세요.
   delay(3000);
-  mp3player(7);
+  mp3player(7); // 준비 대기 음악
   
   WiFi.begin(ssid, password);
   Serial.printf("와이파이 연결 중 ...");
@@ -130,7 +131,7 @@ void askq() {
   breath = HIGH;
   
   mp3.stop_mp3();
-  con = random(0,1);
+  con = random(0,2);
   askSelect();
   delay(2000);
         
@@ -143,15 +144,29 @@ void askq() {
       if(getLocalTime('H')==10||getLocalTime('H')==12||getLocalTime('H')==17
       ||getLocalTime('H')==18||getLocalTime('H')==22||getLocalTime('H')==23) {
         if(con==0) {
-          mp3player(22); // mp3player(random(31,40));
-          askFlag = true;
+          mp3player(random(31,43));
+          askFlag = HIGH;
+          Serial.println("질문 체크 깃발 올림");
         } else if(con==1) {
-          mp3player(25); // mp3player(random(41,50));
-          askFlag = true;
+          mp3player(random(51,58));
+          askFlag = HIGH;
+          Serial.println("질문 체크 깃발 올림");
+        } else if(con==2) {
+          jokeNum = random(61,65);
+          mp3player(jokeNum);
+          if(jokeNum==61) {
+            delay(10000);
+          } else if(jokeNum==63) {
+            delay(5000);
+          } else {
+            delay(3000);
+          }
+          joke();
         } else {}
       } else {
         mp3player(11);
         sendData(6, "1");
+        mp3player(25);
       }
       break;
       
@@ -186,6 +201,40 @@ void emerg() {
       sendData(1, "1");
       delay(2000);
       mp3player(1);
+      break;
+      
+    } else {}
+    
+    w++;
+    Serial.println(w);
+    delay(1000);
+    
+  }
+  
+}
+
+void joke() {
+  
+  int w = 0;
+  buttonState = LOW;
+  
+  mp3.stop_mp3();
+  mp3player(27);
+  delay(2000);
+        
+  while(w < 10) {
+    
+    buttonState = digitalRead(buttonPin);
+    
+    if(buttonState == HIGH) {
+
+      mp3player(28);
+      delay(2000);
+      mp3player(jokeNum+10);
+      delay(2000);
+      mp3player(26);
+      askFlag = HIGH;
+      Serial.println("질문 체크 깃발 올림");
       break;
       
     } else {}
@@ -281,7 +330,8 @@ void sendData(int field, String dat) {
     if(http.GET() > 0) {
       
       Serial.println("질문응답정보 전송 성공");
-      askFlag = true;
+      askFlag = HIGH;
+      Serial.println("질문응답 체크 깃발 올림");
       
     } else {
       
@@ -303,7 +353,7 @@ void sendData(int field, String dat) {
       if(http.GET() > 0) {
         
         Serial.println("활동량 데이터 전송 성공");
-        flag2 = true;
+        flag2 = HIGH;
         Serial.println("활동량 데이터 전송 체크 깃발 올림");
         actDat = 0;
         
@@ -323,7 +373,7 @@ void sendData(int field, String dat) {
       if(http.GET() > 0) {
         
         Serial.println("온도 데이터 전송 성공");
-        flag3 = true;
+        flag3 = HIGH;
         Serial.println("온도 데이터 전송 체크 깃발 올림");
         tempDat = 0;
         avgTempCount = 1;
@@ -344,7 +394,7 @@ void sendData(int field, String dat) {
       if(http.GET() > 0) {
         
         Serial.println("습도 데이터 전송 성공");
-        flag4 = true;
+        flag4 = HIGH;
         Serial.println("습도 데이터 전송 체크 깃발 올림");
         humiDat = 0;
         avgHumiCount = 1;
@@ -368,13 +418,13 @@ void setFlag() {
 
   if(getLocalTime('H')%2==1&&getLocalTime('N')%5==0&&getLocalTime('S')%10==0) {
     
-    if(flag2) {flag2 = false; Serial.println("활동량 데이터 전송 체크 깃발 내림");} else {}
-    if(flag3) {flag3 = false; Serial.println("온도 데이터 전송 체크 깃발 내림");} else {}
-    if(flag4) {flag4 = false; Serial.println("습도 데이터 전송 체크 깃발 내림");} else {}
+    if(flag2) {flag2 = LOW; Serial.println("활동량 데이터 전송 체크 깃발 내림");} else {}
+    if(flag3) {flag3 = LOW; Serial.println("온도 데이터 전송 체크 깃발 내림");} else {}
+    if(flag4) {flag4 = LOW; Serial.println("습도 데이터 전송 체크 깃발 내림");} else {}
     
   } else if(getLocalTime('N')%60==59&&getLocalTime('S')%10==0) {
     
-    if(askFlag) {askFlag = false; Serial.println("질문 체크 깃발 내림");} else {}
+    if(askFlag) {askFlag = LOW; Serial.println("질문 체크 깃발 내림");} else {}
     
   } else {}
   
@@ -481,6 +531,8 @@ void askSelect() {
     mp3player(23); // 노래 한곡 들으시겠습니까?
   } else if(!askFlag&&con==1) {
     mp3player(24); // 놀라운 사실 하나 알려드릴까요?
+  } else if(!askFlag&&con==2) {
+    mp3player(29); // 농담 하나 들려드릴까요?
   } else {}
 
 }
