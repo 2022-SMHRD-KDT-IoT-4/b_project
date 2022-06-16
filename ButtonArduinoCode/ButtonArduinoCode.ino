@@ -322,6 +322,7 @@ void sendData(int field, String dat) {
     if(http.GET() > 0) {
 
       mp3player(94); // 응급 신호 전송 완료
+      delay(2000);
       mp3player(93); // 보호자가 확인할 때까지 잠시만 기다려주세요.
       Serial.println("위급상황정보 문자&이메일 전송 성공");
       
