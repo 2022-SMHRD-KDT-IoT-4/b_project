@@ -255,7 +255,7 @@ void joke() {
 
 void setBreath() {
   
-  if(getLocalTime('N')%10==0&&getLocalTime('S')%10==0) {
+  if(getLocalTime('N')%10==0&&getLocalTime('S')%30==0) {
     breath = LOW;
   } else {}
   
