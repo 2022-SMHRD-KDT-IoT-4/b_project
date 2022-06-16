@@ -30,7 +30,7 @@ boolean saveButtonState = LOW;
 int con = 0;
 int jokeNum = 0;
 
-int weather = 0; // 0:맑음, 1:흐림, 2:비옴, 3:눈내림
+int weatherState = 0; // 0:맑음, 1:흐림, 2:비옴, 3:눈내림
 
 float cycletime = 0;
 float distance = 0;
@@ -173,9 +173,9 @@ void askq() {
           }
           joke();
         } else if(con==4) {
-          getWeather();
-          getWeather2();
-          getWeather3();
+          getWeather(weatherState);
+          getWeather2(avgHumiDat);
+          getWeather3(avgTempDat/10, avgTempDat%10);
           mp3player(83);
         } else {}
       } else {
@@ -584,29 +584,20 @@ void askSelect() {
 
 }
 
-void getWeather() {
+void getWeather(int weatherState) {
 
-  if(weather==0) {
-    mp3player(131);
-  } else if(weather==1) {
-    mp3player(132);
-  } else if(weather==2) {
-    mp3player(133);
-  } else if(weather==3) {
-    mp3player(134);
-  } else {}
-  
+  mp3player(131+weatherState);
   delay(1500);
   
 }
 
-void getWeather2() {
+void getWeather2(int humi) {
 
-  if(avgHumiDat > 60) {
+  if(humi > 60) {
     mp3player(135);
-  } else if(avgHumiDat < 40) {
+  } else if(humi < 40) {
     mp3player(136);
-  } else if(avgHumiDat >= 40 && avgHumiDat <= 60) {
+  } else if(humi >= 40 && humi <= 60) {
     mp3player(137);
   } else {}
   
@@ -614,89 +605,21 @@ void getWeather2() {
   
 }
 
-void getWeather3() {
+void getWeather3(int ten, int one) {
 
-  int ten = avgTempDat/10;
-  int one = avgTempDat%10;
-
-  if(ten==1) {
-    mp3player(101);
+  if(ten > 1) {
+    mp3player(100+ten);
     delay(400);
     mp3player(110);
-  } else if(ten==2) {
-    mp3player(102);
     delay(400);
+  } else if(ten == 1) {
     mp3player(110);
-  } else if(ten==3) {
-    mp3player(103);
     delay(400);
-    mp3player(110);
-  } else if(ten==4) {
-    mp3player(104);
-    delay(400);
-    mp3player(110);
-  } else if(ten==5) {
-    mp3player(105);
-    delay(400);
-    mp3player(110);
-  } else if(ten==6) {
-    mp3player(106);
-    delay(400);
-    mp3player(110);
-  } else if(ten==7) {
-    mp3player(107);
-    delay(400);
-    mp3player(110);
-  } else if(ten==8) {
-    mp3player(108);
-    delay(400);
-    mp3player(110);
-  } else if(ten==9) {
-    mp3player(109);
-    delay(400);
-    mp3player(110);
-  } else {}
-
-  delay(400);
-
-  if(one==1) {
-    mp3player(101);
-    delay(400);
-    mp3player(111);
-  } else if(one==2) {
-    mp3player(102);
-    delay(400);
-    mp3player(111);
-  } else if(one==3) {
-    mp3player(103);
-    delay(400);
-    mp3player(111);
-  } else if(one==4) {
-    mp3player(104);
-    delay(400);
-    mp3player(111);
-  } else if(one==5) {
-    mp3player(105);
-    delay(400);
-    mp3player(111);
-  } else if(one==6) {
-    mp3player(106);
-    delay(400);
-    mp3player(111);
-  } else if(one==7) {
-    mp3player(107);
-    delay(400);
-    mp3player(111);
-  } else if(one==8) {
-    mp3player(108);
-    delay(400);
-    mp3player(111);
-  } else if(one==9) {
-    mp3player(109);
-    delay(400);
-    mp3player(111);
   } else {}
   
+  mp3player(100+one);
+  delay(400);
+  mp3player(111);
   delay(1500);
   
 }
