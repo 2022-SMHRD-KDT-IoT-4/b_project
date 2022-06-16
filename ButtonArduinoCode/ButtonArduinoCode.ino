@@ -87,7 +87,7 @@ void setup() {
 }
 
 void loop() {
-  
+
   buttonState = digitalRead(buttonPin);
   distanceState = getDistanceValue();
   actDat += getAct();
@@ -96,10 +96,12 @@ void loop() {
   setBreath();
   setFlag();
   
+  if(buttonState==HIGH) mp3.stop_mp3(); else {}
+  
   if((WiFi.status()==WL_CONNECTED)) {
 
     if(buttonState==HIGH&&saveButtonState==LOW) emerg(); else {}
-    if(millis()>30000&&getAct()==100&&breath==LOW) askq(); else {}
+    if(millis()>60000&&getAct()==100&&breath==LOW) askq(); else {}
     sendData(2, (String) actDat);
     sendData(3, (String) avgTempDat);
     sendData(4, (String) avgHumiDat);
@@ -108,7 +110,6 @@ void loop() {
 
   saveButtonState = buttonState;
   saveDistanceState = distanceState;
-  getReport();
 
 }
 
@@ -136,7 +137,6 @@ void askq() {
   int w = 0;
   breath = HIGH;
   
-  mp3.stop_mp3();
   con = random(0,2);
   askSelect();
   delay(2000);
@@ -191,7 +191,6 @@ void emerg() {
   int w = 0;
   buttonState = LOW;
   
-  mp3.stop_mp3();
   mp3player(2); // 응답 신호를 전송하시려면 다시 한 번 눌러주세요.
   delay(2000);
         
@@ -222,6 +221,7 @@ void emerg() {
 void joke() {
   
   int w = 0;
+  breath = HIGH;
   buttonState = LOW;
   
   mp3.stop_mp3();
@@ -255,7 +255,7 @@ void joke() {
 
 void setBreath() {
   
-  if(getLocalTime('N')%10==0&&getLocalTime('S')%30==0) {
+  if(getLocalTime('N')%10==0&&getLocalTime('S')%10==0) {
     breath = LOW;
   } else {}
   
@@ -520,7 +520,7 @@ void mp3player(int value) {
   delay(100);
   mp3.play_mp3(1, value);
   Serial.println((String)value + "번 재생");
-      
+  
 }
 
 void askSelect() {
