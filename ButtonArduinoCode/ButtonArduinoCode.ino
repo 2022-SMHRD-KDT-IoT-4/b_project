@@ -177,6 +177,7 @@ void askq() {
           getWeather2(avgHumiDat);
           getWeather3(avgTempDat/10, avgTempDat%10);
           mp3player(83);
+          askFlag = HIGH;
         } else {}
       } else {
         mp3player(11); // 띵동
