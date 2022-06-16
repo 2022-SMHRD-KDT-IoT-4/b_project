@@ -10,7 +10,7 @@ kp_dfplayer_mini mp3(Serial2);
 
 const int buttonID = 2;
 const String cloudServer = "https://api.thingspeak.com/update?api_key=R59W39KN53FQOAYL";
-const String tomcatServer = "http://172.30.1.35:8082/button_project_backup/EmergencyMailService.do";
+const String tomcatServer = "http://172.30.1.35:8082/button_project_backup/EmergencyService.do";
 const char* ntpServer = "pool.ntp.org";
 const char* ssid = "iptime";
 const char* password = "";
@@ -24,10 +24,13 @@ const int LED = 18;
 const int solosen = 39;
 
 boolean breath = LOW;
+boolean breath2 = LOW;
 boolean buttonState = LOW;
 boolean saveButtonState = LOW;
 int con = 0;
 int jokeNum = 0;
+
+int weather = 0; // 0:맑음, 1:흐림, 2:비옴, 3:눈내림
 
 float cycletime = 0;
 float distance = 0;
@@ -57,6 +60,7 @@ void setup() {
   pinMode(LED, OUTPUT);
   pinMode(solosen, INPUT);
   mp3.set_volume(30);
+  delay(4000);
   mp3player(4); // 안녕하세요
   delay(1000);
   mp3player(5); // 스마트 버튼 영웅이 입니다.
@@ -101,7 +105,7 @@ void loop() {
   if((WiFi.status()==WL_CONNECTED)) {
 
     if(buttonState==HIGH&&saveButtonState==LOW) emerg(); else {}
-    if(millis()>60000&&getAct()==100&&breath==LOW) askq(); else {}
+    if(millis()>60000&&getAct()==100&&breath==LOW&&breath2==LOW) askq(); else {}
     sendData(2, (String) actDat);
     sendData(3, (String) avgTempDat);
     sendData(4, (String) avgHumiDat);
@@ -137,7 +141,7 @@ void askq() {
   int w = 0;
   breath = HIGH;
   
-  con = random(0,2);
+  con = random(0,5);
   askSelect();
   delay(2000);
         
@@ -149,16 +153,16 @@ void askq() {
 
       if(getLocalTime('H')==10||getLocalTime('H')==12||getLocalTime('H')==17
       ||getLocalTime('H')==18||getLocalTime('H')==22||getLocalTime('H')==23) {
-        if(con==0) {
-          mp3player(random(31,43));
-          askFlag = HIGH;
-          Serial.println("질문 체크 깃발 올림");
-        } else if(con==1) {
-          mp3player(random(51,58));
+        if(con==1) {
+          mp3player(random(31,43)); // 음악 랜덤 재생
           askFlag = HIGH;
           Serial.println("질문 체크 깃발 올림");
         } else if(con==2) {
-          jokeNum = random(61,65);
+          mp3player(random(51,58)); // 건강정보 랜덤 재생
+          askFlag = HIGH;
+          Serial.println("질문 체크 깃발 올림");
+        } else if(con==3) {
+          jokeNum = random(61,65); // 농담 랜덤 재생
           mp3player(jokeNum);
           if(jokeNum==61) {
             delay(10000);
@@ -168,11 +172,17 @@ void askq() {
             delay(3000);
           }
           joke();
+        } else if(con==4) {
+          getWeather();
+          getWeather2();
+          getWeather3();
+          mp3player(83);
         } else {}
       } else {
         mp3player(11); // 띵동
-        sendData(6, "1");
+        delay(2000);
         mp3player(25); // 응답해주셔서 감사합니다
+        sendData(6, "1");
       }
       break;
       
@@ -191,7 +201,7 @@ void emerg() {
   int w = 0;
   buttonState = LOW;
   
-  mp3player(2); // 응답 신호를 전송하시려면 다시 한 번 눌러주세요.
+  mp3player(2); // 응급 신호를 전송하시겠습니까? 다시 한 번 눌러주세요.
   delay(2000);
         
   while(w < 10) {
@@ -200,12 +210,15 @@ void emerg() {
     
     if(buttonState == HIGH) {
       
+      breath2 = HIGH;
       mp3player(11); // 띵동
       delay(1000);
-      mp3player(3); // 응답 신호 전송중
+      mp3player(3); // 응급 신호를 전송 중입니다
       sendData(1, "1");
       delay(2000);
       mp3player(1); // 응답 신호가 전송되었습니다
+      // mp3player(94); // 응급 신호 전송 완료
+      // mp3player(93); // 보호자가 확인할 때까지 잠시만 기다려주세요.
       break;
       
     } else {}
@@ -236,7 +249,7 @@ void joke() {
 
       mp3player(28); // 정답은
       delay(2000);
-      mp3player(jokeNum+10);
+      mp3player(jokeNum+10); // 농담 재생
       delay(2000);
       mp3player(26); // 하하하
       askFlag = HIGH;
@@ -255,8 +268,12 @@ void joke() {
 
 void setBreath() {
   
-  if(getLocalTime('N')%10==0&&getLocalTime('S')%10==0) {
+  if(breath==HIGH&&getLocalTime('N')%10==0&&getLocalTime('S')%10==0) {
     breath = LOW;
+  } else {}
+
+  if(breath2==HIGH&&getLocalTime('N')%10==0&&getLocalTime('S')%10==0) {
+    breath2 = LOW;
   } else {}
   
 }
@@ -547,12 +564,139 @@ void askSelect() {
     mp3player(20); // 저녁 약은 드셨나요?
   } else if(!askFlag&&getLocalTime('H')==21) {
     mp3player(21); // 안녕히 주무세요
-  } else if(!askFlag&&con==0) {
-    mp3player(23); // 노래 한곡 들으시겠습니까?
   } else if(!askFlag&&con==1) {
-    mp3player(24); // 놀라운 사실 하나 알려드릴까요?
+    mp3player(23); // 노래 한곡 들으시겠습니까?
+    delay(1500);
+    mp3player(99);
   } else if(!askFlag&&con==2) {
+    mp3player(24); // 놀라운 사실 하나 알려드릴까요?
+    delay(1500);
+    mp3player(99);
+  } else if(!askFlag&&con==3) {
     mp3player(29); // 농담 하나 들려드릴까요?
+    delay(1500);
+    mp3player(99);
+  } else if(!askFlag&&con==4) {
+    mp3player(95); // 오늘 날씨를 알려드릴까요?
+    delay(1500);
+    mp3player(99);
   } else {}
 
+}
+
+void getWeather() {
+
+  if(weather==0) {
+    mp3player(131);
+  } else if(weather==1) {
+    mp3player(132);
+  } else if(weather==2) {
+    mp3player(133);
+  } else if(weather==3) {
+    mp3player(134);
+  } else {}
+  
+  delay(1500);
+  
+}
+
+void getWeather2() {
+
+  if(avgHumiDat > 60) {
+    mp3player(135);
+  } else if(avgHumiDat < 40) {
+    mp3player(136);
+  } else if(avgHumiDat >= 40 && avgHumiDat <= 60) {
+    mp3player(137);
+  } else {}
+  
+  delay(1500);
+  
+}
+
+void getWeather3() {
+
+  int ten = avgTempDat/10;
+  int one = avgTempDat%10;
+
+  if(ten==1) {
+    mp3player(101);
+    delay(400);
+    mp3player(110);
+  } else if(ten==2) {
+    mp3player(102);
+    delay(400);
+    mp3player(110);
+  } else if(ten==3) {
+    mp3player(103);
+    delay(400);
+    mp3player(110);
+  } else if(ten==4) {
+    mp3player(104);
+    delay(400);
+    mp3player(110);
+  } else if(ten==5) {
+    mp3player(105);
+    delay(400);
+    mp3player(110);
+  } else if(ten==6) {
+    mp3player(106);
+    delay(400);
+    mp3player(110);
+  } else if(ten==7) {
+    mp3player(107);
+    delay(400);
+    mp3player(110);
+  } else if(ten==8) {
+    mp3player(108);
+    delay(400);
+    mp3player(110);
+  } else if(ten==9) {
+    mp3player(109);
+    delay(400);
+    mp3player(110);
+  } else {}
+
+  delay(400);
+
+  if(one==1) {
+    mp3player(101);
+    delay(400);
+    mp3player(111);
+  } else if(one==2) {
+    mp3player(102);
+    delay(400);
+    mp3player(111);
+  } else if(one==3) {
+    mp3player(103);
+    delay(400);
+    mp3player(111);
+  } else if(one==4) {
+    mp3player(104);
+    delay(400);
+    mp3player(111);
+  } else if(one==5) {
+    mp3player(105);
+    delay(400);
+    mp3player(111);
+  } else if(one==6) {
+    mp3player(106);
+    delay(400);
+    mp3player(111);
+  } else if(one==7) {
+    mp3player(107);
+    delay(400);
+    mp3player(111);
+  } else if(one==8) {
+    mp3player(108);
+    delay(400);
+    mp3player(111);
+  } else if(one==9) {
+    mp3player(109);
+    delay(400);
+    mp3player(111);
+  } else {}
+  
+  delay(1500);
+  
 }
