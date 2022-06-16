@@ -16,6 +16,7 @@ import kr.smhrd.controller.InputSeniorService;
 import kr.smhrd.controller.JoinService;
 import kr.smhrd.controller.LoginService;
 import kr.smhrd.controller.LogoutService;
+import kr.smhrd.controller.UpdateEmergencyActionService;
 import kr.smhrd.controller.UpdateSeniorService;
 import kr.smhrd.controller.UpdateService;
 
@@ -74,9 +75,10 @@ public class ButtonFrontController extends HttpServlet {
 		}else if (reqURL.equals("UpdateSeniorService.do")) {
 			// 8. 노인 정보 수정 기능
 			sc = new UpdateSeniorService();
+		}else if(reqURL.equals("UpdateEmergencyActionService.do")) {
+			// 9. 조치사항, 조시 시간 업데이트
+			sc = new UpdateEmergencyActionService();
 		}
-		// 9. 질문 정보 보내기는 frontcontroller 안거친다. QuestionInfoService.do
-		// 10. 응급 상황시 이메일 전송 기능도 frontcontroller 안거칩니다. EmergencyMailService.do
 		
 		moveURL = sc.execute(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher(moveURL);

@@ -74,6 +74,7 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>버튼 설문 설정</span></a>
             </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -93,8 +94,6 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="inputSenior.jsp">보호 대상 등록</a>
-                        <a class="collapse-item" href="register.html">정보 수정</a>
-                        <a class="collapse-item" href="forgot-password.html">삭제</a>
                     </div>
                 </div>
             </li>
@@ -104,6 +103,11 @@
                 <a class="nav-link" href="infoSenior.jsp">
                     <i class="fas fa-fw fa-table"></i>
                     <span>모니터링 명단</span></a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="EmerBoard.jsp">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>긴급 호출 리스트</span></a>
             </li>
 
             <!-- Divider -->

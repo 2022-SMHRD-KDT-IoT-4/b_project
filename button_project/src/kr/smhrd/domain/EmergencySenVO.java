@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmergencyVO {
+public class EmergencySenVO {
+	private String senior_name;
 	private int emergency_pk;
 	private String emergency_check;
 	private String emergency_date;

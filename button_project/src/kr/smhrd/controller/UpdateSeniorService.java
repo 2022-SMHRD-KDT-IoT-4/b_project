@@ -26,16 +26,16 @@ public class UpdateSeniorService implements Command {
 		System.out.println("들어옴5");
 		int age = Integer.parseInt(request.getParameter("age"));
 		
-		SeniorVO vo = new SeniorVO(0, senior_name, senior_address, disease, gender, weight, age);
+		//SeniorVO vo = new SeniorVO(0, senior_name, senior_address, disease, gender, weight, age);
 		
 		SeniorDAO dao = new SeniorDAO();
-		int row = dao.updateSenior(vo);
+		//int row = dao.updateSenior(vo);
 		
-		if(row>0) {
-			System.out.println("노인 정보 수정 성공");
-			HttpSession session = request.getSession();
-			session.setAttribute("senior", vo);
-		}
+		//if(row>0) {
+		//	System.out.println("노인 정보 수정 성공");
+		//	HttpSession session = request.getSession();
+		//	session.setAttribute("senior", vo);
+		//}
 		return "infoSenior.jsp";
 	}
 

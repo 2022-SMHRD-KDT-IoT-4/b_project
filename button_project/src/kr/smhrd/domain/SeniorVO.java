@@ -15,4 +15,7 @@ public class SeniorVO {
 	private String gender;
 	private int weight;
 	private int age;
+	
+	private EmergencyVO emergecyvo;
 }
+

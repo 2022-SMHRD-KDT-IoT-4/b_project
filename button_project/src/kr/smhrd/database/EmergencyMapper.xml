@@ -2,10 +2,30 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="kr.smhrd.model.EmergencyDAO">
-	<select id="emergencydateselect" parameterType="int" resultType="String">
-		select emergency_date from emergency where button_id = #{button_id}
+        <mapper namespace="kr.smhrd.model.EmergencyDAO">
+        
+        <!-- 조치 사항 변경 -->
+        <update id="emergencyactionupdate" parameterType = "EmergencyVO">
+		 update emergency set emergency_action=#{emergency_action}, emergency_action_date=sysdate
+		 where emergency_pk=#{emergency_pk}
+		</update>
+		
+			
+	<!-- 긴급 테이블 전체 정보 조회(추후 수정, 기능 확인용 기능) -->
+		<resultMap type="SeniorVO" id="SeniorVO">
+		<result column="senior_name" property="senior_name"/>
+		</resultMap>
+		
+		<resultMap type="EmergencyVO" id="EmergencyVO">
+		<result column="emergency_date" property="emergency_date"/>
+		<result column="emergency_action" property="emergency_action"/>
+		<result column="emergency_action_date" property="emergency_action_date"/>
+		<collection property="emergecyvo" resultMap="EmergencyVO"></collection>
+		</resultMap>
+		
+	<select id="emergencylist" resultType="EmergencySenVO">
+		 select s.senior_name, e.emergency_pk, e.emergency_date, e.emergency_action, TO_CHAR(e.emergency_action_date + 9/24,'YYYY-MM-DD HH24:MI:SS') as emergency_action_date from senior s, emergency e where s.senior_num in(select b.senior_num from button_senior b where b.button_id in(select e.button_id from emergency))
 	</select>
-
-</mapper>
+		
+		
+		</mapper>
