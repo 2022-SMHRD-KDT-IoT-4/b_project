@@ -141,7 +141,7 @@ void askq() {
   int w = 0;
   breath = HIGH;
   
-  con = random(0,5);
+  con = random(1,4);
   askSelect();
   delay(2000);
         
