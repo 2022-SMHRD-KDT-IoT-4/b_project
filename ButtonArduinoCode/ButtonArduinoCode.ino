@@ -214,7 +214,8 @@ void emerg() {
       breath2 = HIGH;
       mp3player(11); // 띵동
       delay(1000);
-      mp3player(3); // 응급 신호를 전송 중입니다
+      mp3player(3); // 응급 신호를 전송 중입니다.
+      delay(2000);
       sendData(1, "1");
       delay(2000);
       break;
@@ -571,15 +572,15 @@ void askSelect() {
     mp3player(99);
   } else if(!askFlag&&con==2) {
     mp3player(24); // 놀라운 사실 하나 알려드릴까요?
-    delay(1500);
+    delay(3000);
     mp3player(99);
   } else if(!askFlag&&con==3) {
     mp3player(29); // 농담 하나 들려드릴까요?
-    delay(1500);
+    delay(2000);
     mp3player(99);
   } else if(!askFlag&&con==4) {
     mp3player(95); // 오늘 날씨를 알려드릴까요?
-    delay(1500);
+    delay(2000);
     mp3player(99);
   } else {}
 
