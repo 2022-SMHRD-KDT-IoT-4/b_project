@@ -25,8 +25,21 @@
 	
 	<!-- 노인 전체 정보 조회(추후 수정, 기능 확인용 기능) -->
 	<select id="seniorlist" resultType="SeniorVO">
-		select * from senior
+		select * from senior 
+         where senior_num in 
+                  (select senior_num 
+                   from member_senior 
+                   where member_id =(select member_id from member where member_id = #{member_id2} )
+                   )
 	</select>
+	
+	<!-- 응급 호출 메일 : 노인번호로 노인이름 가져오기 -->
+	<select id="seniornameselect" parameterType="int"
+		resultType="String">
+		select senior_name from senior where senior_num =
+		#{senior_num}
+	</select>
+	
 
 	
 </mapper>

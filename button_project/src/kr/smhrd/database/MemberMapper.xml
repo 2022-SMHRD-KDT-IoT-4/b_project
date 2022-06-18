@@ -21,11 +21,18 @@
 	
 	<!-- 회원 수정 기능 -->
 	<update id="memberupdate" parameterType="MemberVO">
-		update member set member_pw = #{member_pw}, member_phone = #{member_phone}, member_address = #{member_address} where member_id = #{member_id}
+		update member set member_pw = #{member_pw}, member_phone = #{member_phone}, member_address = #{member_address}, member_mail=#{member_mail} where member_id = #{member_id}
 	</update>
 	
 	<!-- 회원 삭제 기능 -->
 	<delete id="memberdelete" parameterType="String">
 		delete from member where member_id = #{member_id}
 	</delete>
+	
+	<!-- 회원 이메일 찾기 -->
+	<select id="membermailselect" parameterType="String"
+		resultType="String">
+		select member_mail from member where member_id =
+		#{member_id}
+	</select>
 </mapper>

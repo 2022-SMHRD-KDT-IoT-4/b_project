@@ -16,7 +16,7 @@ public class InputSeniorService implements Command {
 	int weight = Integer.parseInt(request.getParameter("weight"));
 	int age = Integer.parseInt(request.getParameter("age"));
 	
-	SeniorVO vo = new SeniorVO(0, senior_name, senior_address, disease, gender, weight, age, null);
+	SeniorVO vo = new SeniorVO(0, senior_name, senior_address, disease, gender, weight, age);
 	
 	SeniorDAO dao = new SeniorDAO();
 	int row = dao.inputSenior(vo);
@@ -31,7 +31,7 @@ public class InputSeniorService implements Command {
 	}
 	
 	// return값 변경하기
-	moveURL = "infoSenior.jsp";
+	moveURL = "inputSenior.jsp";
 	return moveURL;
 	
 	}

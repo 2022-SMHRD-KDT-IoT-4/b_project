@@ -33,13 +33,13 @@
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                     
-                    	<!-- 입력폼양식 -->
+                       <!-- 입력폼양식 -->
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">관리 대상 등록</h1>
                             </div>
                             <!-- 소문자 대문자로 변경 -->
-                            <form class="user" action="InputSeniorService.do">
+                            <form class="user" action="InputSeniorService.do" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="senior_name"
                                         placeholder="보호할 대상의 성함을 입력해주세요">
@@ -49,13 +49,13 @@
                                         placeholder="보호할 대상의 연세를 입력해주세요">
                                 </div>
                             
-                               	<div class="form-group row">
+                                  <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         남성 <input type="radio" class="form-control form-control-user" name="gender" value="MAN" id="gender">
                                     </div>
                                     <div class="col-sm-6">
                                         여성 <input type="radio" class="form-control form-control-user" name="gender" value="WOMAN" id="gender">
-                                	</div>
+                                   </div>
                                 </div>
                                 
                                 <div class="form-group">
@@ -89,6 +89,16 @@
         </div>
 
     </div>
+    
+     <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

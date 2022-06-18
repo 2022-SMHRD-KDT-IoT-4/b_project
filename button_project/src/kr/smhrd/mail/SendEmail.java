@@ -14,10 +14,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
-
-	// SendEmail 초기
 	public void send() {
 
+		
 		Properties p = System.getProperties();
 		p.put("mail.smtp.starttls.enable", "true"); // gmail은 true 고정
 		p.put("mail.smtp.host", "smtp.gmail.com"); // smtp 서버 주소
@@ -115,8 +114,8 @@ class MyAuthentication extends Authenticator {
 
 	public MyAuthentication() {
 
-		String id = "byeori97@gmail.com"; // 구글 이메일 아이디
-		String pw = "futytegvindoxagt"; // 비밀번호
+		String id = "mr.herro0o@gmail.com"; // 구글 이메일 아이디
+		String pw = "hkftcuzhndnbqlth"; // 비밀번호
 
 		// ID와 비밀번호를 입력한다.
 		pa = new PasswordAuthentication(id, pw);
@@ -126,5 +125,6 @@ class MyAuthentication extends Authenticator {
 	public PasswordAuthentication getPasswordAuthentication() {
 		return pa;
 	}
+
 
 }

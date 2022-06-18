@@ -14,10 +14,11 @@ public class UpdateService implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String member_id = request.getParameter("member_id");
 		String member_pw = request.getParameter("member_pw");
+		String member_mail= request.getParameter("member_mail");
 		String member_phone = request.getParameter("member_phone");
 		String member_address = request.getParameter("member_address");
 
-		MemberVO vo = new MemberVO(member_id, member_pw, null, member_phone, null, member_address, null, null);
+		MemberVO vo = new MemberVO(member_id, member_pw, member_mail, member_phone, null, member_address, null, null);
 
 		MemberDAO dao = new MemberDAO();
 		int row = dao.update(vo);
@@ -28,7 +29,7 @@ public class UpdateService implements Command {
 			session.setAttribute("member", vo);
 		}
 		// return값 변경하기
-		return "index.jsp";
+		return "login.jsp";
 	}
 
 }

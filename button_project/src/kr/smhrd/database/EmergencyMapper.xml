@@ -24,7 +24,29 @@
 		</resultMap>
 		
 	<select id="emergencylist" resultType="EmergencySenVO">
-		 select s.senior_name, e.emergency_pk, e.emergency_date, e.emergency_action, TO_CHAR(e.emergency_action_date + 9/24,'YYYY-MM-DD HH24:MI:SS') as emergency_action_date from senior s, emergency e where s.senior_num in(select b.senior_num from button_senior b where b.button_id in(select e.button_id from emergency))
+		 <!-- select s.senior_name, e.emergency_pk, e.emergency_date, e.emergency_action, TO_CHAR(e.emergency_action_date + 9/24,'YYYY-MM-DD HH24:MI:SS') as emergency_action_date from senior s, emergency e where s.senior_num in(select b.senior_num from button_senior b where b.button_id in(select e.button_id from emergency)) -->
+		 
+		  select s.senior_name, e.emergency_pk, e.emergency_date, e.emergency_action, TO_CHAR(e.emergency_action_date + 9/24,'YYYY-MM-DD HH24:MI:SS') as emergency_action_date, m.member_id
+          from senior s, emergency e, member_senior m where s.senior_num 
+                                                in (select b.senior_num from button_senior b where b.button_id
+                                                in  (select e.button_id from emergency))
+                                                and m.member_id= #{id}
+	</select>
+	
+	<!-- 응급 정보 추가 -->
+	<insert id="emergencyinsert" parameterType="EmergencyVO">
+		insert into emergency
+		values (emergency_seq.nextval, #{emergency_check}, sysdate,
+		null, null,
+		#{button_id})
+	</insert>
+
+	<!-- 응급 메일 : 응급 호출 시간 추출 -->
+	<select id="emergencydateselect" parameterType="int"
+		resultType="String">
+		select emergency_date from( select emergency_date from
+		emergency where button_id = #{button_id} order by emergency_date desc)
+		where rownum=1
 	</select>
 		
 		

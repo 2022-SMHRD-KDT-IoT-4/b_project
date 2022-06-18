@@ -1,3 +1,5 @@
+<%@page import="kr.smhrd.domain.MemberVO"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.concurrent.CopyOnWriteArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="oracle.net.aso.l"%>
@@ -6,8 +8,8 @@
 <%@page import="kr.smhrd.model.SeniorDAO"%>
 <%@page import="kr.smhrd.model.EmergencyDAO"%>
 <%@page import="kr.smhrd.domain.EmergencySenVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,17 +35,26 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="vendor/jquery/jquery.min.js"></script>
+	
 
+	
+	
 </head>
 
 <body id="page-top">
+
+    
+
  
- <%
+    <%
+    MemberVO vo=(MemberVO)session.getAttribute("result");
     EmergencyDAO dao = new EmergencyDAO();
-    ArrayList<EmergencySenVO> list = dao.emergencyAllList();
+    ArrayList<EmergencySenVO> list = dao.emergencyAllList(vo.getMember_id());
     System.out.print("log:"+ list);
-    // System.out.println(list.get(0).getButton_id());
-     %>
+    String result = (String)pageContext.getAttribute("result");
+    //System.out.println(list.get(0).getButton_id());
+ 
+    %>
      
      
    
@@ -56,8 +67,9 @@
     
     <!-- Page Wrapper -->
     <div id="wrapper">
+   
 
-        <!-- Sidebar -->
+         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -65,67 +77,56 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">smart monitering</div>
+                <div class="sidebar-brand-text mx-3">Mr.HERO</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.jsp">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>모니터링 대시보드</span></a>
+                    <span>SMART MONITERING</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                설정 메뉴
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>제품 소개</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+       
 
             <!-- Heading -->
             <div class="sidebar-heading">
                 관리 메뉴
             </div>
 
-             <!-- Nav Item - Pages Collapse Menu -->
-             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>보호 등록 관리</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="inputSenior.jsp">대상 등록</a>
-                    </div>
-                </div>
-            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            
 
-            <!-- Nav Item - Tables -->
+             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="infoSenior.jsp">
                     <i class="fas fa-fw fa-table"></i>
                     <span>모니터링 명단</span></a>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="EmerBoard.jsp">
                     <i class="fas fa-fw fa-table"></i>
                     <span>긴급 호출 리스트</span></a>
             </li>
+
+             <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>모니터링 대상 등록</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="inputSenior.jsp">등록</a>
+                    </div>
+                </div>
+            </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -156,12 +157,11 @@
 
                      <!-- Topbar Search -->
                      <div class="input-group">
-                        <div class="input-group-append">&nbsp;&nbsp;&nbsp;[이연석]님은 보호자로 로그인되었습니다</div>
+                        <div class="input-group-append"></div>
                     </div>
 
-                    <!-- Topbar Navbar -->
+                    <c:if test="${!empty result}">
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
@@ -253,8 +253,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -265,8 +264,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -277,8 +275,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -304,25 +301,25 @@
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
-
+						
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">이연석</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                
+                                
+                                <!-- 이름 넣는 곳 -->
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${result.member_name}님</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                
+                                
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profile.jsp">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    프로필
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    설정
+                                    마이페이지
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -331,8 +328,9 @@
                                 </a>
                             </div>
                         </li>
-
-                    </ul>
+                        </ul>
+                        </c:if>
+                     
 
                 </nav>
                 <!-- End of Topbar -->
@@ -365,7 +363,7 @@
                                     
                                     
                                     <!--  end -->
-                                    
+                                     
                                     
                                     <% for( EmergencySenVO arr : list ) { %>
                                         <tr>
@@ -411,14 +409,15 @@
                       let emergency_pk=$("#empk"+pk).val();
                       let emergency_action=$("#emac"+pk).val();
                       $.ajax({ 
-                    	  url : "../UpdateEmergencyActionService.do",
+                    	  url : "UpdateEmergencyActionService.do",
                     	  type : "post",
                     	  data : {"emergency_pk":emergency_pk, "emergency_action":emergency_action },
                     	  success : function(){ 
-                    		  //location.href="http://localhost:8091/b_project123/WebContent/EmerBoard.jsp";         		  
+                    		  //location.href="http://localhost:8091/b_project123/WebContent/EmerBoard.jsp";
+                    		  location.href="EmerBoard.jsp"; 
                     	  },
                     	  error : function(){ 
-                    		  location.href="http://localhost:8091/b_project123/WebContent/EmerBoard.jsp";  
+                    		  alert("실패했다능")
                     	  }
                     	  
                       });

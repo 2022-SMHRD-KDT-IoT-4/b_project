@@ -1,5 +1,9 @@
 package kr.smhrd.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,35 +12,44 @@ import kr.smhrd.domain.SeniorVO;
 import kr.smhrd.model.SeniorDAO;
 
 public class UpdateSeniorService implements Command {
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-//		System.out.println("들어옴");
-//		int senior_num = Integer.parseInt(request.getParameter("senior_num"));
-		System.out.println("들어옴1");
+		int senior_num = Integer.parseInt(request.getParameter("senior_num"));
+		System.out.println(senior_num);
 		String senior_name = request.getParameter("senior_name");
-		System.out.println("들어옴2");
 		String senior_address = request.getParameter("senior_address");
-		System.out.println("들어옴2");
 		String disease = request.getParameter("disease");
-		System.out.println("들어옴3");
 		String gender = request.getParameter("gender");
-		System.out.println("들어옴4");
 		int weight = Integer.parseInt(request.getParameter("weight"));
-		System.out.println("들어옴5");
 		int age = Integer.parseInt(request.getParameter("age"));
 		
-		//SeniorVO vo = new SeniorVO(0, senior_name, senior_address, disease, gender, weight, age);
+		String member_id = request.getParameter("member_id");
 		
+		SeniorVO vo = new SeniorVO(senior_num, senior_name, senior_address, disease, gender, weight, age);
+		System.out.println(member_id);
 		SeniorDAO dao = new SeniorDAO();
-		//int row = dao.updateSenior(vo);
+		int row = dao.updateSenior(vo);
 		
-		//if(row>0) {
-		//	System.out.println("노인 정보 수정 성공");
-		//	HttpSession session = request.getSession();
-		//	session.setAttribute("senior", vo);
-		//}
-		return "infoSenior.jsp";
+		if(row>0) {
+			System.out.println("노인 정보 수정 성공");
+			SeniorDAO dao2 = new SeniorDAO();
+			ArrayList<SeniorVO> list = dao2.seniorAllList(member_id);			
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("Senior", vo);
+			session.setAttribute("list", list);
+		}
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.print("");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
 	}
 
 }

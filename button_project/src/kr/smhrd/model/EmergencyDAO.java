@@ -10,24 +10,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import kr.smhrd.database.SqlSessionManager;
 import kr.smhrd.domain.EmergencySenVO;
 import kr.smhrd.domain.EmergencyVO;
-import kr.smhrd.domain.SeniorVO;
+
 
 public class EmergencyDAO {
 	private SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	private SqlSession sqlSession = null;
-
-	public String selectEmergencyDate(int button_id) {
-		String emergency_date = null;
-		try {
-			sqlSession = sqlSessionFactory.openSession(true);
-			emergency_date = sqlSession.selectOne("kr.smhrd.model.EmergencyDAO.emergencydateselect", button_id);
-			emergency_date = emergency_date.substring(0, 19);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return emergency_date;
-	}
 
 	// 조치 사항 변경
 	public int updateEmergency(EmergencyVO vo) {
@@ -46,12 +33,12 @@ public class EmergencyDAO {
 	}
 	
 	// 긴급 도움 테이블 조회
-	public ArrayList<EmergencySenVO> emergencyAllList(){
+	public ArrayList<EmergencySenVO> emergencyAllList(String id){
 		System.out.print("DB안쪽 : ");
 		ArrayList<EmergencySenVO> list = new ArrayList<EmergencySenVO>();
 		try {
 			sqlSession = sqlSessionFactory.openSession(true);
-			list = (ArrayList)sqlSession.selectList("kr.smhrd.model.EmergencyDAO.emergencylist");
+			list = (ArrayList)sqlSession.selectList("kr.smhrd.model.EmergencyDAO.emergencylist", id);
 			
 			System.out.println(list);
 			
@@ -62,5 +49,35 @@ public class EmergencyDAO {
 		}
 		return list;
 	}
+	
+	// 1. 응급 호출 저장
+		public int insert(EmergencyVO vo) {
+			int row = 0;
+			try {
+				sqlSession = sqlSessionFactory.openSession(true);
+				row = sqlSession.insert("kr.smhrd.model.EmergencyDAO.emergencyinsert", vo);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sqlSession.close();
+			}
+			return row;
+		}
+
+		// 2. 응급 메일 전송 : 응급 호출 시간 추출
+		public String selectEmergencyDate(int button_id) {
+			System.out.println("button id : " + button_id);
+			String emergency_date = null;
+			try {
+				sqlSession = sqlSessionFactory.openSession(true);
+				emergency_date = sqlSession.selectOne("kr.smhrd.model.EmergencyDAO.emergencydateselect", button_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sqlSession.close();
+			}
+			System.out.println("EmergencyDAO의 날짜 : " + emergency_date);
+			return emergency_date;
+		}
 
 }

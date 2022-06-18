@@ -20,7 +20,7 @@ public class DeleteService implements Command {
 			System.out.println("회원 삭제 성공!!");
 		}		
 		// return값 변경하기
-		return "index.jsp";
+		return "infoSenior.jsp";
 	}
 
 }

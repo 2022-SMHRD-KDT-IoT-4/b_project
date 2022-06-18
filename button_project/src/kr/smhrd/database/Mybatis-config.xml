@@ -38,10 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<mapper resource="kr/smhrd/database/SeniorMapper.xml" />
 		<mapper resource="kr/smhrd/database/MemberSeniorMapper.xml" />
 		<mapper resource="kr/smhrd/database/QuestionMapper.xml" />
+		<mapper resource="kr/smhrd/database/ButtonSeniorMapper.xml" />
 		<mapper resource="kr/smhrd/database/EmergencyMapper.xml" />
 	</mappers>
-	
-	
 
 </configuration>                   
 

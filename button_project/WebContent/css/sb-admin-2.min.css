@@ -10,6 +10,8 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
+ 
 :root {
   --blue: #4e73df;
   --indigo: #6610f2;
@@ -558,6 +560,8 @@ pre code {
   margin-left: auto;
 }
 
+
+
 @media (min-width: 576px) {
   .container, .container-sm {
     max-width: 540px;
@@ -611,6 +615,16 @@ pre code {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
+
+.loginpadding{
+	width:100%;
+	padding-top:5rem;
+}
+ 
+
+
+
+
 
 .col {
   flex-basis: 0;
@@ -7913,6 +7927,14 @@ button.bg-dark:focus {
   padding: 3rem !important;
 }
 
+.p-6 {
+ /* padding: 50px 500px !important; */
+ width: 50%;
+ padding-top: 3%;
+ margin: 0 auto;
+ 
+}
+
 .pt-5,
 .py-5 {
   padding-top: 3rem !important;
@@ -10860,11 +10882,14 @@ a:focus {
   }
 }
 
+
 .bg-login-image {
   background: url("https://source.unsplash.com/PiLF4d6HlaU/600x800");
   background-position: center;
   background-size: cover;
 }
+
+/*! https://source.unsplash.com/PiLF4d6HlaU/600x800 */
 
 .bg-register-image {
   background: url("https://source.unsplash.com/1oDK5-RMatA/600x800");
@@ -11279,3 +11304,5 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+

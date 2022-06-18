@@ -1,5 +1,7 @@
+<%@page import="kr.smhrd.domain.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,17 +21,38 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	
+    <script type="text/javascript">
+    
+	$(document).ready(function() {
+		   if(${!empty result1}){
+			   $("#myModal").modal("show");	
+			   sessionStorage.removeItem('result1');
+			  
+		   }
+	});
+	
+	</script>
 
 </head>
 
 <body>
 
+
+	 
+	<div class="loginpadding"></div>
     <div class="container">
+    
+   
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-10 col-lg-12 col-md-12">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
@@ -40,8 +63,10 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">로그인</h1>
+                                        <a></a>
+                                     
                                     </div>
-                                    <form class="user" action="LoginService.do">
+                                    <form class="user" action="LoginService.do" method="post">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 name="member_id" aria-describedby="emailHelp"
@@ -65,6 +90,9 @@
                                     	<div class="text-center">
                                         	<a class="small" href="forgot-password.jsp">비밀번호 분실</a>
                                     	</div>
+                                    	<div class="text-center">
+                                        	<a class="small" href="forgot-password.jsp">회사 소개</a>
+                                    	</div>
                                 	</form>
                                 </div>
                             </div>
@@ -75,8 +103,19 @@
             </div>
 
         </div>
+       
 
     </div>
+    
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -87,6 +126,26 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <p>${result1}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 </body>
 

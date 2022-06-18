@@ -19,9 +19,9 @@ public class QuestionDAO {
 	public List<QuestionVO> selectQuestion(int button_id) {
 		
 		List<QuestionVO> list= null;
-			sqlSession = sqlSessionFactory.openSession(true);
-			list = sqlSession.selectList("kr.smhrd.model.QuestionDAO.questionlist", button_id);
-			sqlSession.close();
+	    sqlSession = sqlSessionFactory.openSession(true);
+		list = sqlSession.selectList("kr.smhrd.model.QuestionDAO.questionlist", button_id);
+	    sqlSession.close();
 
 		return list;
 	}

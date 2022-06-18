@@ -9,7 +9,7 @@
 
 	<!-- 파라미터타입은 받아올 값이 있을 때 지정해주자 -->
 	<!-- 정보 불러오기 -->
-	<select id="questionlist" parameterType="int" resultType="QuestionVO">
-		select 
+	<select id="questionlist" resultType="QuestionVO" parameterType="int">
+		select question_id, question_time, question_data from question where button_id=#{button_id} order by question_time
 	</select>
 </mapper>

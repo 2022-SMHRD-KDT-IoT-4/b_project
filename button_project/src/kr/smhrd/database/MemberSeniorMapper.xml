@@ -11,6 +11,12 @@
 	<select id="memberseniorlist" resultType="MemberSeniorVO">
 		select * from member_senior
 	</select>
+	
+	<!-- 응급 호출 메일에 필요 : 멤버 아이디보기 -->
+	<select id="memberidselect" resultType="String">
+		select member_id from
+		member_senior where senior_num = #{senior_num}
+	</select>
 
 	
 </mapper>

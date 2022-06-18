@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.smhrd.model.ButtonDAO">
+
+<select id="selectSeniorNum" parameterType="int" resultType="int">
+	select senior_num from button_senior where button_id = #{button_id}
+</select>
+
+
+</mapper>

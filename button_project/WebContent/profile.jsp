@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -31,24 +32,24 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">smart monitering</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>모니터링 대시보드</span></a>
             </li>
 
             <!-- Divider -->
@@ -56,42 +57,13 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                설정 메뉴
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
+                    <span>버튼 설문 설정</span></a>
             </li>
 
             <!-- Divider -->
@@ -99,44 +71,33 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                관리 메뉴
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item active" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
+            
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="infoSenior.jsp">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>모니터링 명단</span></a>
             </li>
+
+             <!-- Nav Item - Pages Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>모니터링 대상 등록</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="inputSenior.jsp">등록</a>
+                    </div>
+                </div>
+            </li>
+           
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -147,6 +108,9 @@
             </div>
 
         </ul>
+        
+
+        
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -163,21 +127,11 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
+                    
+                    
+                    <!-- 로그인 세션 부분 -->
+                    
+                    <c:if test="${!empty result}">
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -327,53 +281,48 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${result.member_name}님</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            
+                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profile.jsp">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    마이페이지
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    로그아웃
                                 </a>
                             </div>
+                            
                         </li>
 
                     </ul>
+                    </c:if>
 
                 </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
               			
-              			 <div class="p-5">
+              			 <div class="p-6">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">마이페이지</h1>
                             </div>
                             <!-- 소문자 대문자로 변경 -->
-                            <form class="user" action="#">
+                            <form class="user" action="UpdateService.do" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="member_id"
-                                        placeholder="xktmxk17">
+                                        value="${result.member_id}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="member_name"
-                                        placeholder="황문성">
+                                        value="${result.member_name}" readonly>
                                 </div>
                             
                                 <div class="form-group">
@@ -389,30 +338,32 @@
                                 
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user"
-                                        name="member_mail" placeholder="xktmxk17@gmail.com">
+                                        name="member_mail" value="${result.member_mail}">
                                 </div>
                                 
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user"
-                                        name="member_phone" placeholder="01044420346">
+                                        name="member_phone" value="${result.member_phone}">
                                 </div>
                                 
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="member_address"
-                                        placeholder="광주광역시남구">
+                                        value="${result.member_address}">
                                 </div>
                                 <!-- 관리자, 보호자 -->
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        관리자 <input type="radio" class="form-control form-control-user" name="member_check" value="1" id="member_check">
+                                          <c:if test="${result.member_check eq '1'}">
+                                         		관리자
+                                         </c:if>
+                                         <c:if test="${result.member_check eq '2'}">
+                                         		보호자
+                                         </c:if>
                                     </div>
-                                    <div class="col-sm-6">
-                                        보호자 <input type="radio" class="form-control form-control-user" name="member_check" value="2" id="member_check">
-                                	</div>
+
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" name="member_license" id="member_license"
-                                        placeholder="자격번호">
+                                     자격번호 : ${result.member_license}
                                 </div>
                                 <!-- a태그를 input submit 태그로 변경 -->
                                 <input type = "submit" class="btn btn-primary btn-user btn-block" value = "내 정보수정">
@@ -424,7 +375,12 @@
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
+
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+                    <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -432,10 +388,6 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

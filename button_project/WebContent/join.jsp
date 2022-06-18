@@ -39,7 +39,7 @@
                                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
                             </div>
                             <!-- 소문자 대문자로 변경 -->
-                            <form class="user" action="JoinService.do">
+                            <form class="user" action="JoinService.do" method="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="member_id"
                                         placeholder="아이디">
@@ -104,6 +104,16 @@
         </div>
 
     </div>
+    
+     <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+     <!-- End of Footer -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

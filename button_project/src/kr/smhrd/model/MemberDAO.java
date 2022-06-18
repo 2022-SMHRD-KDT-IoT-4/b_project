@@ -70,16 +70,18 @@ public class MemberDAO {
 	} // 회원 삭제 끝
 	
 	// 5. 응급 호출에 필요 : 멤버 메일 가져오기
-	public String selectMemberMail(String member_id) {
-		String member_mail = null;
-		try {
-			sqlSession = sqlSessionFactory.openSession(true);
-			member_mail = sqlSession.selectOne("kr.smhrd.model.MemberDAO.membermailselect", member_id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sqlSession.close();
+		public String selectMemberMail(String member_id) {
+			String member_mail = null;
+			try {
+				sqlSession = sqlSessionFactory.openSession(true);
+				member_mail = sqlSession.selectOne("kr.smhrd.model.MemberDAO.membermailselect", member_id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sqlSession.close();
+			}
+			return member_mail;
 		}
-		return member_mail;
-	}
+	
+	
 }
